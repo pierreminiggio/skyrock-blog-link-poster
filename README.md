@@ -12,5 +12,5 @@ Utilisation :
 ```javascript
 import post from '@pierreminiggio/skyrock-blog-link-poster'
 
-await post('Facebook login or email', 'Facebook password', 'Facebook page name', 'Post content')
+await post('Skyrock login', 'Skyrock password', 'Link')
 ```
