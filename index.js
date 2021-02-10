@@ -4,6 +4,7 @@ import periodicallyScreenshot from '@pierreminiggio/puppeteer-debug-screenshoter
 /**
  * @typedef {Object} SkyrockBlogLinkPosterConfig
  * @property {boolean} show default false
+ * @property {boolean} debug default false
  * 
  * @param {string} login
  * @param {string} password
@@ -17,6 +18,7 @@ export default function (login, password, link, config = {}) {
     return new Promise(async (resolve, reject) => {
         
         setDefaultConfig(config, 'show', false)
+        setDefaultConfig(config, 'debug', false)
 
         let browser
         try {
@@ -35,7 +37,9 @@ export default function (login, password, link, config = {}) {
         try {
             const page = await browser.newPage()
 
-            periodicallyScreenshot(page, 50)
+            if (config.debug) {
+                periodicallyScreenshot(page, 50)
+            }
 
             await page.goto('https://www.skyrock.com')
 
@@ -62,6 +66,15 @@ export default function (login, password, link, config = {}) {
             await page.click(loginButtonSelector)
 
             await page.waitForTimeout(3000)
+
+            const cookiePopupShowedAfterConnection = await page.evaluate(cookieValidationButtonSelector => {
+                document.querySelector(cookieValidationButtonSelector) !== null
+            }, cookieValidationButtonSelector)
+
+            if (cookiePopupShowedAfterConnection) {
+                await page.click(cookieValidationButtonSelector)
+                await page.waitForTimeout(3000)
+            }
 
             const linkPostSelector = 'a[href="#easy-link-panel"]'
             await page.waitForSelector(linkPostSelector)
