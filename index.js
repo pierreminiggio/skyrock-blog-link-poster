@@ -80,6 +80,11 @@ export default function (login, password, link, config = {}) {
             await page.waitForSelector(linkPostSelector)
             await page.click(linkPostSelector)
 
+            if (cookiePopupShowedAfterConnection) {
+                await page.click(cookieValidationButtonSelector)
+                await page.waitForTimeout(3000)
+            }
+
             const linkInputSelector = '#easy-link-url'
             await page.waitForSelector(linkInputSelector)
 
