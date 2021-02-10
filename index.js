@@ -70,6 +70,8 @@ export default function (login, password, link, config = {}) {
                 document.querySelector(linkInputSelector).value = link
             }, link, linkInputSelector)
 
+            await page.waitForTimeout(3000)
+
             const linkContinueButtonSelector = '#easy-link-panel input[value="Continuer"]'
             await page.waitForSelector(linkContinueButtonSelector)
             await page.click(linkContinueButtonSelector)
