@@ -1,7 +1,7 @@
 {
   "name": "@pierreminiggio/skyrock-blog-link-poster",
   "version": "1.0.0",
-  "description": "Posts questions on Quora",
+  "description": "Posts links on Skyblog",
   "main": "index.js",
   "type": "module",
   "scripts": {
