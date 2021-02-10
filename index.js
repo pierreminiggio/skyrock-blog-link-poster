@@ -41,7 +41,7 @@ export default function (login, password, link, config = {}) {
                 periodicallyScreenshot(page, 50)
             }
 
-            await page.goto('https://www.skyrock.com')
+            await page.goto('https://fr.skyrock.com')
 
             const cookieValidationButtonSelector = 'button[mode="primary"]'
             await page.waitForSelector(cookieValidationButtonSelector)
