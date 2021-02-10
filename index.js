@@ -1,4 +1,5 @@
 import puppeteer from 'puppeteer'
+import periodicallyScreenshot from '@pierreminiggio/puppeteer-debug-screenshoter'
 
 /**
  * @typedef {Object} SkyrockBlogLinkPosterConfig
@@ -33,6 +34,9 @@ export default function (login, password, link, config = {}) {
         
         try {
             const page = await browser.newPage()
+
+            periodicallyScreenshot(page, 50)
+
             await page.goto('https://www.skyrock.com')
 
             const cookieValidationButtonSelector = 'button[mode="primary"]'

@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/pierreminiggio/skyrock-blog-link-poster#readme",
   "dependencies": {
+    "@pierreminiggio/puppeteer-debug-screenshoter": "github:pierreminiggio/puppeteer-debug-screenshoter",
     "puppeteer": "^5.5.0"
   }
 }
